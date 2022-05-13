@@ -1,5 +1,5 @@
 # Diego Velasco
-# Last modified 22 April 2022
+# Last modified 12 May 2022
 import math
 
 import sympy
@@ -35,7 +35,7 @@ class Vector:
         self.__kComp = k
 
     def to_string(self):
-        return "Vector = " + str(self.get_i()) + "i + " + str(self.get_j()) + "j + " + str(self.get_k()) + "k "
+        return str(self.get_i()) + "i + " + str(self.get_j()) + "j + " + str(self.get_k()) + "k "
 
     def display(self):
         print(self.to_string())
@@ -64,7 +64,7 @@ class Vector:
         return math.sqrt(pow(self.get_i(), 2) + pow(self.get_j(), 2) + pow(self.get_k(), 2))
 
     def is_normal(self, b):
-        return self.crossproduct(b) == 0
+        return self.dotproduct(b) == 0
 
     def scale(self, factor):
         self.set_i(factor*self.get_i())
@@ -79,31 +79,17 @@ class Vector:
         grad_a.set_k(diff(self.get_k(), x))
         return grad_a
 
+    def angle(self, b):
+        return acos( (self.dotproduct(b))/(self.magnitude() * b.magnitude()) )
 
-'''
-A = Vector(1, 1, 1)
-B = Vector(1, 1, 10)
+A = Vector(1, 0, 0)
+B = Vector(0, 1, 0)
 C = A.crossproduct(B)
-print(A.magnitude())
-print(A.dotproduct(B))
-C.display()
 
-B.scale(2)
-B.display()
+print("Vector A = " + A.to_string())
+print("Vector B = " + B.to_string())
+print("Vector C = A X B = " + C.to_string())
 
-
-helix = Vector(sin(x), cos(x), x)
-grad = helix.gradient()
-helix.display()
-grad.display()
-
-print(diff(x, x))
-print(helix.get_i())
-
-minusB = 
-minusB.display()
-
-testSum = B.add(minusB)
-testSum.display()
-'''
+print("The angle between vectors A and B is " + str(A.angle(B)))
+print("Vectors A and B are perpendicular. " + str(A.is_normal(B)))
 
