@@ -1,5 +1,6 @@
 # Diego Velasco
 # Last modified 12 May 2022
+
 import math
 
 import sympy
